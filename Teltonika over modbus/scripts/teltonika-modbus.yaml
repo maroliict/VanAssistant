@@ -1,0 +1,142 @@
+# This file is intended to be in /homeassistant/scripts
+# Change line 4 to the IP address of the router
+- name: "teltonika"
+  host: <IP of the ROUTER>
+  type: tcp
+  port: 502
+  sensors:
+    - name: "Teltonika - Mobile signal strength"
+      unique_id: "mobil_signal_strenght"
+      unit_of_measurement: "dBm"
+      slave: 1
+      address: 3
+      data_type: int32
+    - name: "Teltonika - System temperature"
+      unique_id: "Teltonika_System_temperature"
+      unit_of_measurement: "°C"
+      scale: 0.1
+      slave: 1
+      address: 5
+      data_type: int32
+      precision: 1
+    - name: "Teltonika - System hostname"
+      unique_id: "Teltonika_System_hostname"
+      slave: 1
+      address: 7
+      count: 16
+      data_type: string
+    - name: "Teltonika - GSM operator name"
+      unique_id: "Teltonika_GSM_operator_name"
+      slave: 1
+      address: 23
+      count: 16
+      data_type: string
+    - name: "Teltonika - Network registration info"
+      unique_id: "Teltonika_Network_registration_info"
+      slave: 1
+      address: 103
+      count: 16
+      data_type: string
+    - name: "Teltonika - Network type"
+      unique_id: "Teltonika_Network_type"
+      slave: 1
+      address: 119
+      count: 16
+      data_type: string
+    - name: "Teltonika - Local ISO time"
+      unique_id: "Teltonika_Local_ISO_time"
+      slave: 1
+      address: 366
+      count: 12
+      data_type: string
+    - name: "Teltonika - UTC time"
+      unique_id: "Teltonika_UTC_time"
+      slave: 1
+      address: 378
+      count: 12
+      data_type: string
+    - name: "Teltonika - GPS latitude"
+      unique_id: "GPS-latitude"
+      slave: 1
+      address: 143
+      data_type: float32
+      precision: 6
+    - name: "Teltonika - GPS longitude"
+      unique_id: "GPS-longitude"
+      slave: 1
+      address: 145
+      data_type: float32
+      precision: 6
+    - name: "Teltonika - GPS fix time"
+      unique_id: "Teltonika_GPS_fix_time"
+      slave: 1
+      address: 147
+      count: 16
+      data_type: string
+    - name: "Teltonika - GPS date and time"
+      unique_id: "Teltonika_GPS_date_and_time"
+      slave: 1
+      address: 163
+      count: 16
+      data_type: string
+    - name: "Teltonika - GPS speed"
+      unique_id: "Teltonika_GPS_speed"
+      unit_of_measurement: "°km/h"
+      slave: 1
+      address: 179
+      data_type: float32
+      precision: 1
+    - name: "Teltonika - GPS satellite count"
+      unique_id: "Teltonika_GPS_satellite_count"
+      slave: 1
+      address: 181
+      data_type: uint32
+    - name: "Teltonika - GPS accuracy"
+      unique_id: "Teltonika_GPS_accuracy"
+      slave: 1
+      address: 183
+      data_type: float32
+      precision: 2
+    - name: "Teltonika Daten download Monat"
+      unique_id: "Teltonika_Daten_download_Monat"
+      scan_interval: 30
+      unit_of_measurement: "B"
+      data_type: int32
+      slave: 1
+      address: 194
+    - name: "bytes sent mtd"
+      unique_id: bts_snt_mtd01
+      scan_interval: 30
+      data_type: uint32
+      input_type: holding
+      state_class: total_increasing
+      device_class: data_size
+      unit_of_measurement: "B"
+      slave: 1
+      address: 196
+    - name: "Teltonika - System uptime"
+      unique_id: "teltonika_system_uptime"
+      slave: 1
+      address: 1
+      data_type: uint32
+    - name: "Teltonika - Active SIM Card"
+      unique_id: "Teltonika_Active_SIM_Card"
+      unit_of_measurement: "SIM"
+      slave: 1
+      address: 205
+      data_type: uint16
+    - name: "Teltonika - Router serial Nr"
+      unique_id: "Teltonika_Router_serial_Nr"
+      slave: 1
+      address: 39
+      count: 16
+      data_type: string
+  switches:
+    - name: Sim Switches
+      unique_id: "Sim Switches"
+      slave: 1
+      address: 205
+      write_type: holdings
+      # OFF Sim1, ON Sim2
+      command_on: 2
+      command_off: 1
